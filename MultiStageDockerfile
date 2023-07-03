@@ -45,5 +45,3 @@ USER $USERNAME
 
 # Replace '<helo>' with the actual name of your executable
 CMD ["./helo"]
-
-

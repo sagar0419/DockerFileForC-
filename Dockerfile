@@ -30,5 +30,5 @@ RUN cmake . \
 # Changing User
 USER $USERNAME
 
-# Replace '<helo>' with the actual name of your executable
+# Replace '<helo>' with the actual name of your executable.
 CMD ["./helo"]
