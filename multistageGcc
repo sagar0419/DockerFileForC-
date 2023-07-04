@@ -1,0 +1,29 @@
+FROM ubuntu:latest
+
+# ARG for non-root user
+ARG USERNAME=sagar
+ARG USER_UID=1001
+ARG USER_GID=$USER_UID
+
+# Adding non-root user
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    &&  apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+# Remove "gdb" if debug is not required
+    gdb \
+    && apt-get upgrade -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+
+WORKDIR /app
+
+# Copy your C++ source code into the Docker image
+COPY . .
+
+# Build your C++ code
+RUN g++ -std=c++17 -o helo helo.cpp
+
+# Run your compiled program
+CMD ["./helo"]
