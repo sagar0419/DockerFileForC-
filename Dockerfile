@@ -1,4 +1,4 @@
-FROM ubuntu:kinetic
+FROM ubuntu:kinetic-20230624
  
 # ARG for non-root user
 ARG USERNAME=sagar
